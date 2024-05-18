@@ -6,7 +6,7 @@ const Home = () => {
 
     const [msg, setMsg] = useState([]);
 
-
+    
     return (
         <div>
             <h2>Receive Client</h2>
