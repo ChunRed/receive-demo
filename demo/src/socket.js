@@ -9,7 +9,7 @@ const Socket = (props) => {
 
     const connectWebSocket = () => {
         //開啟
-        setWs(webSocket('http://' + IP))
+        setWs(webSocket('https://'+IP))
     }
 
 

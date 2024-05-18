@@ -1,7 +1,15 @@
 const express = require("express");
 const app = express();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const path = require('path');
+const fs = require('fs');
+const  https = require('https').Server(
+    {
+        key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
+        cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
+    },
+);
+//const https = require('http').Server();
+const io = require('socket.io')(https);
 
 app.use(express.static('node_modules'));
 
@@ -39,8 +47,8 @@ io.on('connection', function (socket) {
 });
 
 let PORT = 3000;
-http.listen(process.env.PORT || PORT, function() {
-    var host = http.address().address
-    var port = http.address().port
+https.listen(process.env.PORT || PORT, function() {
+    var host = https.address().address
+    var port = https.address().port
     console.log('App listening at ', host, port)
 });
