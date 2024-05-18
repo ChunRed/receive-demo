@@ -1,25 +1,26 @@
 import {useState} from 'react'
+import Socket from './socket';
+
 
 const InputControl = () => {
 
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState('input text');
 
   return(
 
     <div>
+      <h2>send text</h2>
       <input 
         type="text" 
         value={inputValue} 
         onChange={(event) => {setInputValue(event.target.value)}} 
       />
-
-      <button onClick={() => {
-        console.log(inputValue);
-        
-      }}>send</button>
-
       <br />
-      <h1>{inputValue}</h1>
+      <br />
+      <Socket>
+        {inputValue}
+      </Socket>
+
     </div>
 
   );
