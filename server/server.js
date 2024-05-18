@@ -2,14 +2,16 @@ const express = require("express");
 const app = express();
 const path = require('path');
 const fs = require('fs');
-const  https = require('https').Server(
-    {
-        key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
-        cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
-    },
-);
-//const https = require('http').Server();
+// const  https = require('https').Server(
+//     {
+//         key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
+//         cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
+//     },
+// );
+const https = require('http').Server();
 const io = require('socket.io')(https);
+
+let list=[];
 
 app.use(express.static('node_modules'));
 
@@ -43,6 +45,15 @@ io.on('connection', function (socket) {
 
     socket.on('getMessage', (msg) => {
         console.log(msg);
+
+        if(list.length > 10){
+            list = [];
+        }
+        else{
+            list.unshift(msg);
+        }
+
+        io.emit('getMessage', list);
     })
 });
 

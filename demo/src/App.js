@@ -1,29 +1,17 @@
 import {useState} from 'react'
-import Socket from './socket';
+import Home from './Home';
 
 
-const InputControl = () => {
+const App = ({list, setList}) => {
 
-  const [inputValue, setInputValue] = useState('input text');
+  
 
   return(
-
     <div>
-      <h2>send text</h2>
-      <input 
-        type="text" 
-        value={inputValue} 
-        onChange={(event) => {setInputValue(event.target.value)}} 
-      />
-      <br />
-      <br />
-      <Socket>
-        {inputValue}
-      </Socket>
 
+      <Home></Home>
     </div>
-
   );
 }
 
-export default InputControl;
+export default App;

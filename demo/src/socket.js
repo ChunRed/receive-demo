@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import ReactDom from 'react-dom'
 import webSocket from 'socket.io-client'
+import Create from "./Create";
 
 
-const Socket = (props) => {
+const Socket = ({msg, setMsg}) => {
     const [ws, setWs] = useState(null)
-    const [IP, setIP] = useState('192.168.0.126:3000')
+    const [listValue, setListValue] = useState('');
 
     const connectWebSocket = () => {
         //開啟
-        setWs(webSocket('https://'+IP))
+        setWs(webSocket('http://192.168.0.126:3000'))
     }
 
 
@@ -18,33 +19,33 @@ const Socket = (props) => {
             //連線成功在 console 中打印訊息
             console.log('success connect!')
             //設定監聽
-            initWebSocket()
+            ws.on('getMessage', message => {
+                setMsg(message);
+                console.log(message);
+    
+            })
         }
     }, [ws])
 
-    const initWebSocket = () => {
-        //對 getMessage 設定監聽，如果 server 有透過 getMessage 傳送訊息，將會在此被捕捉
-        ws.on('getMessage', message => {
-            console.log(message)
-        })
-    }
+
 
     const sendMessage = () => {
         //以 emit 送訊息，並以 getMessage 為名稱送給 server 捕捉
-        ws.emit('getMessage', props.children);
+        const timestamp = (new Date).getTime();
+        ws.emit('getMessage', listValue);
     }
 
 
-
-    //connectWebSocket();
     return (
         <div>
-            <h2>setup IP</h2>
-            <input type="text" value={IP} onChange={(event) => {setIP(event.target.value)}} />
-            <br />
-            <br />
             <input type='button' value='連線' onClick={connectWebSocket} />
             <input type='button' value='送出訊息' onClick={sendMessage} />
+
+            <Create
+                list={listValue}
+                setList={setListValue}
+            />
+
         </div>
     )
 }
