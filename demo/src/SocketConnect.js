@@ -25,6 +25,10 @@ const Socket = ({msg, setMsg}) => {
                 console.log(message);
     
             })
+
+            ws.on('start',(msg) => {
+                console.log(msg);
+            })
         }
     }, [ws])
 
