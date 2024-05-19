@@ -11,7 +11,7 @@ const Create = ({ list, setList }) => {
     }
 
     return(
-        <div>
+        <div className="mt-3 my-3">
             <input 
                 type="text" 
                 value={value} 
@@ -23,12 +23,6 @@ const Create = ({ list, setList }) => {
                     
                 }}
             />
-
-            {/* <button 
-                type="button" 
-                onClick={onAdd}
-            >send</button> */}
-
 
         </div>
     )

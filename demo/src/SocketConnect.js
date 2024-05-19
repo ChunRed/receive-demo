@@ -7,7 +7,13 @@ import Create from "./Create";
 const Socket = ({msg, setMsg}) => {
     const [ws, setWs] = useState(null)
     const [listValue, setListValue] = useState('');
+    const [serverState, setServerState] = useState('disconnect server');
+
+
     const [IP, setIP] = useState('https://receive-demo.onrender.com');
+    //const [IP, setIP] = useState('http://192.168.0.127:3000');
+
+
 
     const connectWebSocket = () => {
         //開啟
@@ -27,7 +33,7 @@ const Socket = ({msg, setMsg}) => {
             })
 
             ws.on('start',(msg) => {
-                console.log(msg);
+                setServerState('connect server');
             })
         }
     }, [ws])
@@ -42,12 +48,12 @@ const Socket = ({msg, setMsg}) => {
 
 
     return (
-        <div>
-            <input type="text"  value={IP}  onChange={(e) => {
-                setIP(e.target.value)
-            }} />
-            <input type='button' value='連線' onClick={connectWebSocket} />
-            <input type='button' value='送出訊息' onClick={sendMessage} />
+        <div className='text-center ' >
+            <input className='mt-5 btn btn-outline-dark' type='button' value='connect server' onClick={connectWebSocket} />
+
+            <h3 className="text-dark mt-3" >{serverState}</h3>
+
+            <input className='mt-5 btn btn-outline-dark' type='button' value='送出訊息' onClick={sendMessage} />
 
             <Create
                 list={listValue}

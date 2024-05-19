@@ -8,8 +8,9 @@ const Home = () => {
 
     
     return (
-        <div>
-            <h2>Receive Client</h2>
+        <div  >
+            <h2 className="bg-dark text-light py-3 text-center">Receive Client</h2>
+
 
             <Socket
                 msg={msg}
@@ -24,10 +25,12 @@ const Home = () => {
             {
                 msg.length === 0
                     ?
-                    <div><h2>No message</h2></div>
+                    <div className="text-dark mt-3 text-center"><h2>No message</h2></div>
                     :
                     msg.map(item => (
-                        <li key={item[0]}>{item[1]}</li>
+
+                        <li key={item[0]} className=" bg-dark text-light p-1 mt-1">{item[1]}</li>
+                        
 
                     ))
 

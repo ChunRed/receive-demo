@@ -2,18 +2,12 @@ const express = require("express");
 const app = express();
 const path = require('path');
 const fs = require('fs');
-
-// const  https = require('https').Server(
-//     {
-//         key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
-//         cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
-//     },
-// );
 const http = require('http').Server(app);
 
 const io = require('socket.io')(http);
 
-let list=[];
+let list=[[0,''],[1,''],[2,''],[3,''],[4,''],[5,''],[6,''],[7,''],[8,''],[9,'']];
+let id = 89;
 
 app.use(express.static('node_modules'));
 
@@ -43,15 +37,15 @@ io.on('connection', function (socket) {
 
     socket.emit('start', "hello, user" + userId);
 
+
+
     socket.on('getMessage', (msg) => {
         console.log(msg);
 
-        if(list.length > 10){
-            list = [];
-        }
-        else{
-            list.unshift(msg);
-        }
+        id > 99 ? id = 0 : id += 1;
+
+        list.unshift([ id, msg[1] ]);
+        list.pop();
 
         io.emit('getMessage', list);
     })
