@@ -9,7 +9,7 @@ const fs = require('fs');
 //         cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
 //     },
 // );
-const http = require('http').Server();
+const http = require('http').Server(app);
 
 const io = require('socket.io')(http);
 
@@ -20,6 +20,10 @@ app.use(express.static('node_modules'));
 // setup express router
 app.get('/', function (req, res) {
     res.send("server is running.")
+});
+
+app.get('/demo', function (req, res) {
+    res.sendFile(__dirname + '/index.html');
 });
 
 app.get('/demo', function (req, res) {
@@ -66,8 +70,4 @@ http.listen(process.env.PORT || PORT, function() {
     var host = http.address().address
     var port = http.address().port
     console.log('App listening at ', host, port)
-});
-
-app.listen(process.env.PORT || 4000, function() {
-    console.log('App listening at ', 4000)
 });
