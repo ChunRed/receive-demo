@@ -10,7 +10,7 @@ const Socket = ({msg, setMsg}) => {
 
     const connectWebSocket = () => {
         //開啟
-        setWs(webSocket('http://192.168.0.126:3000'))
+        setWs(webSocket('https://192.168.0.126:3000'))
     }
 
 
