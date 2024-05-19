@@ -7,7 +7,7 @@ import Create from "./Create";
 const Socket = ({msg, setMsg}) => {
     const [ws, setWs] = useState(null)
     const [listValue, setListValue] = useState('');
-    const [IP, setIP] = useState('https://192.168.0.127:3000');
+    const [IP, setIP] = useState('https://receive-demo.onrender.com');
 
     const connectWebSocket = () => {
         //開啟
