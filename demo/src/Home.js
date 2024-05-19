@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Socket from './Socket'
+import Socket from './SocketConnect'
 import Create from "./Create";
 
 const Home = () => {
