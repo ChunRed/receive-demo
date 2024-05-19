@@ -3,15 +3,15 @@ const app = express();
 const path = require('path');
 const fs = require('fs');
 
-const  https = require('https').Server(
-    {
-        key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
-        cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
-    },
-);
-//const https = require('http').Server();
+// const  https = require('https').Server(
+//     {
+//         key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
+//         cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
+//     },
+// );
+const http = require('http').Server();
 
-const io = require('socket.io')(https);
+const io = require('socket.io')(http);
 
 let list=[];
 
@@ -60,8 +60,14 @@ io.on('connection', function (socket) {
 });
 
 let PORT = 3000;
-https.listen(process.env.PORT || PORT, function() {
-    var host = https.address().address
-    var port = https.address().port
+
+
+http.listen(process.env.PORT || PORT, function() {
+    var host = http.address().address
+    var port = http.address().port
     console.log('App listening at ', host, port)
+});
+
+app.listen(process.env.PORT || 4000, function() {
+    console.log('App listening at ', 4000)
 });
