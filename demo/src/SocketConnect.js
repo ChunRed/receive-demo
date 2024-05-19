@@ -7,10 +7,11 @@ import Create from "./Create";
 const Socket = ({msg, setMsg}) => {
     const [ws, setWs] = useState(null)
     const [listValue, setListValue] = useState('');
+    const [IP, setIP] = useState('https://192.168.0.127:3000');
 
     const connectWebSocket = () => {
         //開啟
-        setWs(webSocket('https://192.168.0.126:3000'))
+        setWs(webSocket(IP))
     }
 
 
@@ -38,6 +39,9 @@ const Socket = ({msg, setMsg}) => {
 
     return (
         <div>
+            <input type="text"  value={IP}  onChange={(e) => {
+                setIP(e.target.value)
+            }} />
             <input type='button' value='連線' onClick={connectWebSocket} />
             <input type='button' value='送出訊息' onClick={sendMessage} />
 

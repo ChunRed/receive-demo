@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const path = require('path');
 const fs = require('fs');
+
 const  https = require('https').Server(
     {
         key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
@@ -9,6 +10,7 @@ const  https = require('https').Server(
     },
 );
 //const https = require('http').Server();
+
 const io = require('socket.io')(https);
 
 let list=[];

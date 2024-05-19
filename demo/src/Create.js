@@ -24,10 +24,10 @@ const Create = ({ list, setList }) => {
                 }}
             />
 
-            <button 
+            {/* <button 
                 type="button" 
                 onClick={onAdd}
-            >send</button>
+            >send</button> */}
 
 
         </div>
