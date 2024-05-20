@@ -1,0 +1,18 @@
+.item {
+    opacity: 1;
+}
+
+
+
+.item.horizTranslate {
+    -webkit-transition: 3s;
+    -moz-transition: 3s;
+    -ms-transition: 3s;
+    -o-transition: 3s;
+    transition: 3s;
+    top: 50px !important;
+}
+
+body{
+    background-color: black;
+}

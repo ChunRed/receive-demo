@@ -9,24 +9,25 @@ const io = require('socket.io')(http);
 let list=[[0,''],[1,''],[2,''],[3,''],[4,''],[5,''],[6,''],[7,''],[8,''],[9,'']];
 let id = 89;
 
-app.use(express.static('node_modules'));
+
+
 
 // setup express router
+const engine = require('ejs-locals');
+app.engine('ejs', engine);
+app.set('view engine', 'ejs');
+app.use(express.static('src'));
+app.use(express.static('node_modules'));
+app.use(express.static('node_modules/typed.js/dist'))
+
 app.get('/', function (req, res) {
     res.send("server is running.")
 });
 
 app.get('/demo', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
+    res.render('demo');
 });
 
-app.get('/demo', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
-});
-
-io.on('connection', function (socket) {
-    console.log('a user connected, user id: ');
-});
 
 
 // setup socket.io
@@ -48,6 +49,7 @@ io.on('connection', function (socket) {
         list.pop();
 
         io.emit('getMessage', list);
+        io.emit('display', msg);
     })
 });
 

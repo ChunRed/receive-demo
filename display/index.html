@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script
+            src="./node_modules/socket.io-client/dist/socket.io.js"></script>
+
+        <script src="./node_modules/baffle/dist/baffle.min.js"></script>
+        <title>Document</title>
+    </head>
+
+    <body style="word-wrap:break-word">
+
+        <div class="server-state">disconnect</div>
+
+
+        <h1 class="display">hellohellohellohellohellohellohel</h1>
+
+        <script>
+
+        //socket event
+        let socket;
+        //socket = io('https://receive-demo.onrender.com');
+        socket = io('http://192.168.0.127:3000');
+        let serverState = document.querySelector('.server-state');
+        socket.on('start', (msg) => {
+            serverState.innerHTML = 'server connect';
+        })
+
+
+
+        //display event
+        
+        let display = baffle('.display',{
+            characters: ['█','＃','█' ],
+            speed: 75
+        })
+        
+        display.reveal(50000);
+
+        setInterval(() => {
+            display.reveal(50000);
+        }, 8000);
+
+
+    </script>
+
+    </body>
+</html>

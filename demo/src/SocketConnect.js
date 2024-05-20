@@ -11,7 +11,7 @@ const Socket = ({msg, setMsg}) => {
 
 
     const [IP, setIP] = useState('https://receive-demo.onrender.com');
-    //const [IP, setIP] = useState('http://192.168.0.127:3000');
+    //const [IP, setIP] = useState('http://192.168.0.126:3000');
 
 
 
