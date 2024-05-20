@@ -1,8 +1,8 @@
 //socket event
 let socket;
 let items = [];
-//socket = io('https://receive-demo.onrender.com');
-socket = io('http://192.168.0.126:3000');
+socket = io('https://receive-demo.onrender.com');
+//socket = io('http://192.168.0.126:3000');
 let serverState = document.querySelector('.server-state');
 
 socket.on('start', (msg) => {
