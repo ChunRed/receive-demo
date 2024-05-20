@@ -20,11 +20,8 @@ app.use(express.static('src'));
 app.use(express.static('node_modules'));
 app.use(express.static('node_modules/typed.js/dist'))
 
-app.get('/', function (req, res) {
-    res.send("server is running.")
-});
 
-app.get('/demo', function (req, res) {
+app.get('/', function (req, res) {
     res.render('demo');
 });
 

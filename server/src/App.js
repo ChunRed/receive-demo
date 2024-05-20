@@ -50,8 +50,7 @@ class Item {
         this.item.classList.add('p-3');
         this.item.classList.add('border');
         document.querySelector('.App').appendChild(this.item);
-
-        this.color = Math.floor(Math.random() * 255);
+        
     }
 
     display(index) {
@@ -60,7 +59,10 @@ class Item {
         this.item.style.transition = 'transform 2s';
         this.item.style.transform = 'translateY(' + index * 110 + 'px)';
 
-        this.item.style.background = 'rgb(0,0,0)';
+        // this.color1 = Math.floor(Math.random() * 255);
+        // this.color2 = Math.floor(Math.random() * 255);
+        // this.color3 = Math.floor(Math.random() * 255);
+        // this.item.style.background = 'rgb(' +this.color1+ ',' +this.color2+ ',' +this.color3+ ')';
     }
 
     destroy() {
